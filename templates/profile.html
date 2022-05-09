@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register Form</h1>
+<div>
+    <form class="login_form1" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="photo">Приложите фотографию к профилю (желательное отношение 1 к 1)</label>
+            <input type="file" class="form-control-file" id="photo" name="file">
+        </div>
+        <button type="submit" class="btn btn-dark">Отправить</button>
+    </form>
+</div>
 <form action="" method="post">
     {{ form.hidden_tag() }}
     {{ form.csrf_token }}
@@ -18,24 +26,6 @@
         {{ form.login.label }}<br>
         {{ form.login(class="form-control") }}<br>
         {% for error in form.login.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password.label }}<br>
-        {{ form.password(class="form-control", type="password") }}<br>
-        {% for error in form.password.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.password_again.label }}<br>
-        {{ form.password_again(class="form-control", type="password") }}<br>
-        {% for error in form.password_again.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
@@ -71,4 +61,12 @@
     <p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
     {{message}}
 </form>
+<div class="carousel-item active" style="display: flex; justify-content: flex-end">
+    {% if current_user.image_profile == "static/img/data/default_avatar.png" %}
+    <img class="img-thumbnail" src="static/img/data/default_avatar.png" alt="...">
+    {% else %}
+    <img class="img-thumbnail"
+         src="static/img/users/avatar_{{ current_user.id }}.png" alt="...">
+    {% endif %}
+</div>
 {% endblock %}

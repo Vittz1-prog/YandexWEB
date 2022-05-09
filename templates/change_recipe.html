@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="carousel-item active" style="display: flex; justify-content: flex-end">
+    {% if recipe.image == "static/img/data/default_recipe.png" %}
+    <img class="img-thumbnail" src="static/img/data/default_avatar.png" alt="...">
+    {% else %}
+    <img class="img-thumbnail"
+         src="static/img/recipes/recipe_{{ current_user.id }}.png" alt="...">
+    {% endif %}
+</div>
+<div>
+    <form class="login_form1" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="photo">Приложите фотографию к профилю (желательное отношение 1 к 1.5)</label>
+            <input type="file" class="form-control-file" id="photo" name="file">
+        </div>
+        <button type="submit" class="btn btn-dark">Отправить</button>
+    </form>
+</div>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.name.label }}<br>
+        {{ form.name(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.text.label }}<br>
+        {{ form.text(class="form-control") }}<br>
+        {% for error in form.text.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-dark") }}</p>
+    {{ message }}
+</form>
+{% endblock %}

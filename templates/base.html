@@ -55,10 +55,12 @@
                     <li class="nav-item dropdown">
                         <button class="btn dropdown-toggle btn-light" type="button" data-toggle="dropdown"
                                 aria-expanded="false">
-                            {{ current_user.name }}<span class="caret"></span></button>
+                            {{ current_user.login }}<span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a href="/profile">Профиль</a></li>
                             <li><a href="/friends">Друзья</a></li>
+                            <li><a href="/add_recipe">Добавить рецепт</a></li>
+                            <li><a href="/change_recipes">Изменить рецепт</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
