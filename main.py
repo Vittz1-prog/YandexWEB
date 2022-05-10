@@ -25,8 +25,13 @@ def main():
     app.run(port=8080, host='127.1.1.1', debug=True)
 
 
+def check():
+    pass
+
+
 @app.errorhandler(404)
 def not_found(error):
+    print(error)
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
@@ -46,7 +51,8 @@ def logout():
 @app.route("/", methods=['GET', 'POST'])
 def base():
     if request.method == 'GET':
-        pass
+        session = db_session.create_session()
+
     return render_template("main.html")
 
 

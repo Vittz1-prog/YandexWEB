@@ -24,3 +24,48 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     def check_password(self, password):
         return check_password_hash(self.hashed_password, password)
+
+    def __init__(self, name, surname, image_profile, login, age, email, hashed_password):
+        self.name = name
+        self.surname = surname
+        self.image_profile = image_profile
+        self.login = login
+        self.age = age
+        self.email = email
+        self.hashed_password = hashed_password
+
+    def change_name(self, new_name):
+        self.name = new_name
+
+    def change_surname(self, new_surname):
+        self.surname = new_surname
+
+    def change_image_profile(self, new_image_profile):
+        self.image_profile = new_image_profile
+
+    def change_login(self, new_login):
+        self.login = new_login
+
+    def change_age(self, new_age):
+        self.age = new_age
+
+    def change_email(self, new_email):
+        self.email = new_email
+
+    def check_email(self, new_email):
+        return new_email == self.email
+
+    def check_age(self, new_age):
+        return new_age == self.age
+
+    def check_login(self, new_login):
+        return new_login == self.login
+
+    def check_image_profile(self, new_image_profile):
+        return new_image_profile == self.image_profile
+
+    def check_surname(self, new_surname):
+        return new_surname == self.surname
+
+    def check_name(self, new_name):
+        return new_name == self.name
