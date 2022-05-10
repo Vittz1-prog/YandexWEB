@@ -52,8 +52,12 @@ def logout():
 def base():
     if request.method == 'GET':
         session = db_session.create_session()
+        recipes = session.query(Recipe).all()
+        images = []
+        for recipe in recipes:
+            images.append(recipe.image)
 
-    return render_template("main.html")
+        return render_template("main.html", images=images)
 
 
 @app.route("/register", methods=['GET', 'POST'])
